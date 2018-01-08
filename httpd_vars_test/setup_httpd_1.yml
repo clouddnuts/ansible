@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  vars_files:
+    - install_apache_1.yml
+ 
+  tasks:
+   - name: install httpd Package
+     yum: name=httpd state=present
+
+   - name: restart Apache
+     service: name= "{{ package_name }}" state=restarted
