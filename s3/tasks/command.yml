@@ -1,0 +1,29 @@
+- hosts: localhost
+  vars_files:
+   - key.yml
+  vars:
+   bucket_name: clouddnuts-test003
+  tasks:
+ #  - name: S3 create bucket
+ #    s3:
+ #      aws_access_key: "{{ accesskey}}"
+ #      aws_secret_key: "{{ secretkey}}"
+ #      bucket: "{{ bucket_name}}"
+ #      mode: create
+ #    register: create_bucket
+    
+
+  - name: Describe instances
+    command: aws s3api list-buckets
+    environment:
+     AWS_ACCESS_KEY_ID: "{{ lookup('env','AWS_ACCESS_KEY') }}"
+     AWS_SECRET_ACCESS_KEY: "{{ lookup('env','AWS_SECRET_KEY') }}"
+  
+ # - name: Check Ansible version
+ #   command: ls
+ #   register: ansibleVersion
+#
+#  - name: Print version
+#    debug:
+#     var=ansibleVersion
+

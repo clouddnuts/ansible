@@ -1,0 +1,13 @@
+- hosts: localhost
+
+  vars_prompt:
+    - name: "confirm"
+      prompt: Just to confirm you will install stuff 
+      private: no
+      default: "no"
+  tasks:
+    - name: Install APACHE SERVER
+      yum: name=httpd
+      sudo: true 
+      when:  confirm == "yes"
+  

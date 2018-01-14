@@ -1,0 +1,45 @@
+- hosts: localhost
+# vars_files:
+#   - key.yml
+  vars:
+   bucket_name: clouddnuts-000
+   region: us-east-1
+   s3_tags: clouddnuts
+  tasks:
+   - name: Create S3 bucket
+     command: >
+      aws s3api create-bucket --bucket {{ bucket_name  }}
+    # environment:
+    #  AWS_ACCESS_KEY_ID: "{{ aws_access_key }}"
+    #  AWS_SECRET_ACCESS_KEY: "{{ aws_secret_key }}"
+     register: s3output
+     failed_when: "s3output.stderr != '' and 'An error occurred' in s3output.stderr and 'BucketAlreadyExists' not in s3output.stderr"
+   - name: output
+     debug:
+        var=s3output
+   
+   
+   - name: Tag S3 bucket
+     command: >
+      aws s3api put-bucket-tagging --bucket {{ bucket_name }}   --tagging file://tagging.json  
+     register: tag
+                     
+   - name: output
+     debug:
+      var=tag
+    
+
+
+   - name: SSE encryption S3 bucket
+     command: >
+      aws s3api put-bucket-policy --bucket {{ bucket_name }}  --policy file://s3-sse-access-policy.json
+     register: encrypt
+
+   - name: encrypt
+     debug:
+      var=encrypt 
+     
+     
+    
+   
+ 

@@ -1,0 +1,71 @@
+---
+
+- hosts: localhost
+  vars_files:
+   - key.yml
+  vars:
+   bucket_name: clouddnuts-test001
+  tasks:
+   - name: S3 create bucket
+     s3:
+       aws_access_key: "{{ accesskey}}" 
+       aws_secret_key: "{{ secretkey}}"
+       bucket: "{{ bucket_name}}"
+       mode: create
+     tags:
+       - create
+ 
+   - name: S3 Simple PUT operation
+     s3:
+      bucket: "{{ bucket_name}}"
+      object: test/file.txt
+      src: file.txt
+      mode: put
+     tags: 
+      - put
+
+   - name: S3 Simple GET operation
+     s3:
+      bucket: "{{ bucket_name}}"
+      object: test/file.txt
+      dest: /etc/aws/s3/test.txt
+      mode: get
+     tags: 
+      - get
+     
+   - name: S3 List keys simple
+     s3:
+      bucket: "{{ bucket_name}}"
+      mode: list
+     tags:
+      - list
+    # register: s3list
+    
+   - name: Delete an object from a bucket
+     s3:
+      bucket: "{{ bucket_name}}"
+      object: test/file.txt
+      mode: delobj
+     tags:
+      - delobj
+
+  # - name: GET an object but dont download if the file checksums match. New in 2.0
+  #   s3:
+  #    bucket: mybucket
+  #    object: /my/desired/key.txt
+  #    dest: /usr/local/myfile.txt
+  #    mode: get
+  #    overwrite: different
+   
+   #- name: Delete a bucket and all contents
+   #  s3:
+   #   bucket: "{{ bucket_name}}"
+   #   mode: delete
+   #  tags:
+   #   - delbuk
+
+
+  # - name: S3 list bucket output
+  #   debug: 
+  #   msg: "s3 list bucket {{ s3list.stdout  }}"
+
