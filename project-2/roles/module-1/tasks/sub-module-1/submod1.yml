@@ -1,0 +1,5 @@
+---
+
+- name: write a file
+  template: src=submod1.txt  dest=/etc/ansible/project-1
+

@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  tasks:
+#  roles:
+ #  - module-1
+ #  - module-2
+  roles:
+  - { role: module-1, building_blocks: ["sub-module"] }
+
+
+
+
+#  - name: Include Construct Tasks
+#    include: common/one.yml
+#    when: application_method  == "one"

@@ -1,0 +1,4 @@
+---
+
+- name: write a file
+  template: src=test_2.txt dest=/etc/ansible/project-1

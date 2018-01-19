@@ -1,0 +1,8 @@
+---
+
+- name: write a file
+  template: src=test_1.txt dest=/etc/ansible/project-1
+
+- name: write a new file
+  include: ../sub-module-1/submod1.yml
+  when: '"sub-module" in building_blocks'
