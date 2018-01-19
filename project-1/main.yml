@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  tasks:
+  roles:
+   - module-1
+   - module-2

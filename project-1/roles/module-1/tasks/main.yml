@@ -1,0 +1,26 @@
+---
+
+#- name: write a file
+#  template: src=test_1.txt dest=/etc/ansible/project-1
+#  register: file
+  
+#- name: debug file
+#  debug: var=file
+
+- block:
+ # - name: Perform validations
+ #   include: common/one.yml
+ #   run_once: true
+ # - name: Get Prerequisites
+ #   include: common/sine-qua-non.yml
+ #   run_once: true
+  - name: Include Construct Tasks
+    include: common/one.yml
+    when: application_method  == "one"
+  - name: Include Destruct Tasks
+    include: common/two.yml
+    when: application_method  == "two"
+  - name: Include Utility Tasks
+    include: common/three.yml
+    when: application_method  == "three"
+

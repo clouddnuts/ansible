@@ -1,0 +1,8 @@
+---
+
+- name: write a file
+  template: src=sec.txt dest=/etc/ansible/project-1
+  register: file
+  
+- name: debug file
+  debug: var=file
