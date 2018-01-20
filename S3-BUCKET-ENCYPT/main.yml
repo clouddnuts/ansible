@@ -1,0 +1,13 @@
+---
+
+#- hosts: localhost
+#  tasks:
+#  - { role: aws,building_blocks: ["s3-create"] }
+- hosts: localhost
+#  vars_files:
+#   - s3-config.yml
+  tasks:
+  roles:
+    - { role: aws,building_blocks: ["encrypts3bucket"] }
+ 
+
