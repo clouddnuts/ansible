@@ -1,0 +1,41 @@
+ANSIBLE SETUP : - lan card config + dns config + ansible config
+
+[root@primarynode ~]# vim /etc/sysconfig/network-scripts/ifcfg-ens33
+
+TYPE="Ethernet"
+BOOTPROTO="dhcp"
+DEFROUTE="yes"
+PEERDNS="yes"
+PEERROUTES="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_PEERDNS="yes"
+IPV6_PEERROUTES="yes"
+IPV6_FAILURE_FATAL="no"
+IPV6_ADDR_GEN_MODE="stable-privacy"
+NAME="ens33"
+UUID="9f543e9c-c504-4b11-90ed-d0cc63f3632d"
+DEVICE="ens33"
+ONBOOT="yes"
+IPADDR=192.168.204.130
+NETMASK=255.255.255.0
+
+[root@primarynode ~]# vim /etc/hosts
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+192.168.204.130  primarynode.ansible.com  machine1
+192.168.204.129  secondarynode.ansible.com machine2
+
+[root@primarynode ~]# vim /etc/ansible/hosts
+
+# [primary]
+# primarynode.ansible.com
+
+secondarynode.ansible.com ansible_ssh_host=192.168.204.129
+#primarynode.ansible.com   ansible_ssh_host=192.168.204.130
+
+[remote]
+secondarynode.ansible.com
+#primarynode.ansible.com
