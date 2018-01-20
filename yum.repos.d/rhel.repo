@@ -1,0 +1,5 @@
+[rhel_dvd]
+name:rhel package
+baseurl:file:///mnt/rhel_7.3
+gpgcheck=0
+enabled=1
