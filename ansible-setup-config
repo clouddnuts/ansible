@@ -1,4 +1,7 @@
 ANSIBLE SETUP : - lan card config + dns config + ansible config
+After setting the setup please restart the network driver
+
+# /etc/init.d/network restart
 
 [root@primarynode ~]# vim /etc/sysconfig/network-scripts/ifcfg-ens33
 
@@ -39,3 +42,7 @@ secondarynode.ansible.com ansible_ssh_host=192.168.204.129
 [remote]
 secondarynode.ansible.com
 #primarynode.ansible.com
+
+After setting the setup please restart the network driver
+
+# /etc/init.d/network restart
