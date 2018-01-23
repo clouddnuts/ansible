@@ -1,0 +1,8 @@
+ID: TEST
+SERNO: 123
+CODE: JINJA
+
+hostname HP
+ipaddredd 1.2.3.4
+
+

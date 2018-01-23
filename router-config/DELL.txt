@@ -1,0 +1,8 @@
+ID: TEST
+SERNO: 123
+CODE: JINJA
+
+hostname DELL
+ipaddredd 111.211.30.11
+
+

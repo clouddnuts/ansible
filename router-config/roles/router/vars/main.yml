@@ -1,0 +1,10 @@
+router:
+  - hostname: HP
+    ipaddress: 1.2.3.4
+
+  - hostname: DELL
+    ipaddress: 111.211.30.11
+  
+  - hostname: ACCER
+    ipaddress: 31.22.53.45
+
