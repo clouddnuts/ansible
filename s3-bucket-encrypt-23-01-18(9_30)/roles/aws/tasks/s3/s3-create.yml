@@ -1,0 +1,40 @@
+#- name: Create S3 SSE encryption
+#  command: >
+#      aws s3api put-bucket-encryption
+#      --bucket "{{bucket_name}}"  --server-side-encryption-configuration file:///etc/ansible/project-5/roles/aws/file/sse.yml
+#  when: application_method  == "one"
+#  tags: s3sse
+#  register: s3sse
+#- debug: 
+#    var=s3sse
+
+#- name: Create S3 KMS encryption
+#  command: >
+#      aws s3api put-bucket-encryption
+#      --bucket "{{bucket_name}}" --server-side-encryption-configuration file:///etc/ansible/project-5/roles/aws/file/kms.yml
+# when: application_method  == "two"
+#  tags:
+#      - kms
+#  register: s3kms
+#- debug:
+#      var=s3kms
+
+- name: include jinja2 template
+  template: src=test.j2 dest=/etc/ansible/project-5/roles/aws/file/test.json
+  register: jinja2
+  tags: jinja2
+- debug: var=jinja2
+
+
+- name: Create S3 KMS encryption
+  command: >
+      aws s3api put-bucket-encryption
+      --bucket "{{bucket_name}}" --server-side-encryption-configuration file:///etc/ansible/project-5/roles/aws/file/test.json
+ # when: application_method  == "two"
+ # tags:
+ #     - kms
+  register: s3kms
+- debug:
+      var=s3kms
+  
+

@@ -1,0 +1,5 @@
+---
+
+- name: call s3 bucket encrypt playbook
+  include: s3/s3-create.yml
+  when: '"encrypts3bucket" in building_blocks'

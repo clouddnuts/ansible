@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  tasks:
+    - include: install_apache.yml
+    - name: check Apache Service
+      service: name={{ package_name }} state=restarted

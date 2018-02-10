@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  vars_files:
+   - key.yml
+  vars:
+   bucket_name: clouddnuts-test001
+  tasks:
+   - name: S3 create bucket
+     s3:
+       aws_access_key: "{{ accesskey}}" 
+       aws_secret_key: "{{ secretkey}}"
+       bucket: "{{ bucket_name}}"
+       mode: create
+     tags:
+       - create
+

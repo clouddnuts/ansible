@@ -1,0 +1,43 @@
+- hosts: localhost
+  vars_files:
+   - key.yml
+  vars:
+   bucket_name: clouddnuts-test003
+  tasks:
+ #  - name: S3 create bucket
+ #    s3:
+ #      aws_access_key: "{{ accesskey}}"
+ #      aws_secret_key: "{{ secretkey}}"
+ #      bucket: "{{ bucket_name}}"
+ #      mode: create
+ #    register: create_bucket
+    
+
+   - name: Describe instances
+     command: aws s3api create-bucket --bucket useast1-nlsn-w-digital-ss-techops-test001010 
+     environment:
+      AWS_ACCESS_KEY_ID: "{{ aws_access_key }}"
+      AWS_SECRET_ACCESS_KEY: "{{ aws_secret_key }}"
+     register: output
+   
+   - name: output
+     debug:
+        var=output
+     
+ 
+ 
+   #- name: Create S3 bucket
+    # command: >
+    #   aws s3api create-bucket
+     #  --bucket {{ bucket_name }} 
+    # environment: "{{ environment_vars }}"
+   #  register: s3
+  
+ # - name: Check Ansible version
+ #   command: ls
+ #   register: ansibleVersion
+#
+#  - name: Print version
+#    debug:
+#     var=ansibleVersion
+

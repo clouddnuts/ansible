@@ -1,0 +1,19 @@
+- name: Create S3 SSE encryption
+  command: >
+      aws s3api put-bucket-encryption
+      --bucket "{{bucket_name}}"  --server-side-encryption-configuration file:///etc/ansible/project-5/roles/aws/file/sse.yml
+  tags: s3sse
+  register: s3sse
+- debug: 
+    var=s3sse
+
+- name: Create S3 KMS encryption
+  command: >
+      aws s3api put-bucket-encryption
+      --bucket "{{bucket_name}}" --server-side-encryption-configuration file:///etc/ansible/project-5/roles/aws/file/kms.yml
+  tags:
+      - kms
+  register: s3kms
+- debug:
+      var=s3kms
+

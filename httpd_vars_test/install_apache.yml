@@ -1,0 +1,5 @@
+---
+
+- set_fact: package_name=httpd
+- name: install Apache
+  yum: name=httpd state=latest

@@ -1,0 +1,29 @@
+- hosts: localhost
+  vars_files:
+   - key.yml
+  vars:
+   bucket_name: clouddnuts-test003
+  tasks:
+   - name: S3 create bucket
+     s3:
+       aws_access_key: "{{ accesskey}}"
+       aws_secret_key: "{{ secretkey}}"
+       bucket: "{{ bucket_name}}"
+       mode: create
+     register: create_bucket
+     tags:
+       - create
+
+   - name: Output of create bucket
+     debug: var=create_bucket
+
+     
+   #  - name: Create S3 bucket
+   #    command: >
+   #     aws s3api create-bucket
+   #     --region {{ region }}
+   #     --bucket {{ bucket_name }} 
+       # {% if  region != "us-east-1" %}
+       # --create-bucket-configuration LocationConstraint={{ region }}
+       # {% endif %}
+

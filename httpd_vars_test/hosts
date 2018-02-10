@@ -1,0 +1,9 @@
+# [primary]
+# primarynode.ansible.com
+
+secondarynode.ansible.com ansible_ssh_host=192.168.204.129
+#primarynode.ansible.com   ansible_ssh_host=192.168.204.130
+
+[remote]
+secondarynode.ansible.com
+#primarynode.ansible.com

@@ -1,0 +1,6 @@
+
+
+- name: creste config router file
+  template: src=router.j2 dest=/etc/ansible/project-6/{{item.hostname}}.txt
+  with_items:
+   "{{ router}}"
